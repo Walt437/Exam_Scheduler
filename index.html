@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Schedule</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      table,
+      td,
+      th {
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: 15px;
+      }
+      div {
+        text-align: center;
+      }
+      body {
+        background-color: #cbf1ee;
+        text-align: center;
+      }
+
+      button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .inputBox {
+        width: 300px;
+        height: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.587);
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <header style="color: rgb(51, 51, 83); text-align: center">
+      <h1>EXAM SCHEDULER</h1>
+    </header>
+    <div style="text-align: center">
+      <button
+        id="genBtn"
+        class="button"
+        style="
+          display: block;
+          text-align: center;
+          background-color: #4caf50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        "
+        onclick="myFunction()"
+      >
+        SEE EXAM DATES
+      </button>
+      <br /><br /><br />
+      <table id="table">
+        <tr>
+          <th id="tcStudent">Student Name</th>
+          <th id="tcCourseID">Course ID</th>
+          <th id="tcExamDate">Exam Date</th>
+        </tr>
+      </table>
+      <b></b><b></b>
+      <div id="myDIV" style="display: none">
+        <input
+          class="inputBox"
+          type="text"
+          id="inputSearch"
+          placeholder="Search CourseID or Student Name..."
+        />
+        <button onclick="searchButtonCourseID()">Search CourseID</button>
+        <button onclick="searchButtonStudent()">Search Student</button>
+      </div>
+      <div id="searchDataOutput" style="font-size: 20px"></div>
+    </div>
+
+    <div id="demo"></div>
+
+    <script>
+      var table = document.getElementById("table");
+
+      let courses = [
+        { CourseID: "DS", Student: "RAJ" },
+        { CourseID: "CE", Student: "Ravi" },
+        { CourseID: "DB", Student: "RAJ" },
+        { CourseID: "SE", Student: "RAJ" },
+        { CourseID: "CD", Student: "Ravi" },
+        { CourseID: "FDB", Student: "Rajesh" },
+      ];
+
+      function searchButtonCourseID() {
+        let searchData = document.getElementById("inputSearch").value;
+        function filterArray(id) {
+          return id.CourseID == searchData;
+        }
+        console.log(courses.filter(filterArray));
+
+        document.getElementById("searchDataOutput").innerHTML = JSON.stringify(
+          courses.filter(filterArray)
+        );
+      }
+      function searchButtonStudent() {
+        let searchData = document.getElementById("inputSearch").value;
+        function filterArray(id) {
+          return id.Student == searchData;
+        }
+        console.log(courses.filter(filterArray));
+
+        document.getElementById("searchDataOutput").innerHTML = JSON.stringify(
+          courses.filter(filterArray)
+        );
+      }
+
+      function myFunction() {
+        var start_date, examdate;
+
+        for (let i = 0; i < courses.length; i++) {
+          start_date = "2022-1-";
+
+          let random_number_of_days = Math.floor(Math.random() * 30 + 1);
+          random_number_of_days.toString();
+          examdate = start_date + random_number_of_days;
+          courses[i].examdate = examdate;
+
+          var row = table.insertRow(i + 1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          cell1.innerHTML = courses[i].Student;
+          cell2.innerHTML = courses[i].CourseID;
+          cell3.innerHTML = examdate;
+        }
+        var x = document.getElementById("myDIV");
+        x.style.display = "block";
+        var y = document.getElementById("genBtn");
+        y.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

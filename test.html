@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- <p>find() returns the value of the first element :</p>
+
+<p id="demo"></p>
+
+<script>
+const ages = [3, 10, 18, 20];
+
+document.getElementById("demo").innerHTML = ages.find(checkAge);
+
+function checkAge(age) {
+  return age >= 0;
+}
+</script>
+<form>
+    <input type="text" id="formInput"></input>
+    <input type="button" id="search"></input>
+   </form>
+   <h2 id="displayText"></h2>
+   <script>
+    var search = document.getElementById("search");
+    var data = ['yes','no','maybe'];
+   
+    search.onclick = function() {
+       var formInput = document.getElementById("formInput").value;
+   
+       for (i=0; i<data.length; i++){
+          if (data[i] == formInput) {
+            document.getElementById("displayText").innerHTML = "Found" + data[i];
+            
+          } else {
+            document.getElementById("displayText").innerHTML = "Not Found" ;
+          }
+       }
+    };
+   </script> -->
+    <br /><br /><br /><br /><br /><br /><br />
+
+    <p>
+      Click "Test" to get every element in the array that has a value above this
+      number:
+    </p>
+
+    <p><input type="text" id="ageToCheck" /></p>
+    <button onclick="searchBtn()">Test</button>
+
+    <p id="searchResult"></p>
+
+    <script>
+      const ages = [32, 33, 12, 40];
+
+      function checkAge(age) {
+        return age >= document.getElementById("ageToCheck").value;
+      }
+
+      function myFunction() {
+        document.getElementById("searchResult").innerHTML =
+          ages.filter(checkAge);
+      }
+    </script>
+
+    <script>
+      function searchBtn() {
+        let inputData = document.getElementById("ageToCheck").value;
+        let courses = [
+          { CourseID: "DS" },
+          { CourseID: "CE" },
+          { CourseID: "DB" },
+          { CourseID: "SE" },
+          { CourseID: "CD" },
+          { CourseID: "FDB" }
+        ];
+        let bigCities = [];
+        for (let i = 0; i < courses.length; i++) {
+          if (courses[i].CourseID == inputData) {
+            bigCities.push(courses[i].CourseID);
+          }
+        }
+
+        console.log(bigCities);
+        var data = JSON.stringify(bigCities);
+        var displaySearchResult = (document.createElement("h2").innerHTML =
+          data);
+        document.getElementById("searchResult").append(displaySearchResult);
+      }
+    </script>
+  </body>
+</html>
